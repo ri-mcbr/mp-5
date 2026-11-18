@@ -1,4 +1,3 @@
-
 "use server";
 
 import { URLProps } from "@/types";
@@ -27,6 +26,14 @@ export default async function shortenURL(
     }
 
     const urlsCollection = await getCollection(URLS_COLLECTION);
+
+    const existingLink = await urlsCollection.findOne({
+        alias: alias,
+    });
+
+    if (existingLink) {
+        throw new Error("Duplicate alias");
+    }
 
     const newLink: URLProps = {
         url: validURL.toString(),

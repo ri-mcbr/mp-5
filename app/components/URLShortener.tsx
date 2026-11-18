@@ -1,4 +1,3 @@
-
 "use client";
 
 import shortenURL from "@/lib/shortenURL";
@@ -91,8 +90,8 @@ export default function URLShortener({
                             ) {
                                 setError("Alias contains unsupported characters.");
                             } else if (
-                                error.code === 11000 ||
-                                error.message === "Duplicate alias"
+                                error.message === "Duplicate alias" ||
+                                error.code === 11000
                             ) {
                                 setError("Invalid alias: This alias already exists");
                             } else {
@@ -142,7 +141,7 @@ export default function URLShortener({
                     >
                         <label
                             htmlFor="alias"
-                            style={{marginBottom: "2%"}}
+                            style={{ marginBottom: "2%" }}
                         >
                             Custom Alias
                         </label>
@@ -256,7 +255,6 @@ export default function URLShortener({
                                         border: "none",
                                         backgroundColor: "transparent",
                                         padding: "1vw",
-
                                     }}
                                 >
                                     {copied ? "Copied!" : "Copy"}
